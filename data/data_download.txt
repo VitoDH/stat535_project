@@ -1,0 +1,20 @@
+1. DJIA 30 stock
+
+<https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231#all_stocks_2006-01-01_to_2018-01-01.csv>
+
+2. Historical Hourly Weather Data
+
+<https://www.kaggle.com/selfishgene/historical-hourly-weather-data#wind_speed.csv>
+
+3. Foreign Exchange Prediction
+
+<https://www.kaggle.com/team-ai/foreign-exchange-fx-prediction-usdjpy>
+
+4. Hourly Energy Consumption 
+
+<https://www.kaggle.com/robikscube/hourly-energy-consumption#PJM_Load_hourly.csv>
+
+5. Individual household electric power consumption
+
+https://archive.ics.uci.edu/ml/datasets/individual+household+electric+power+consumption
+
