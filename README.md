@@ -8,9 +8,7 @@
 
 `Fashion-MNIST` is a dataset of [Zalando](https://jobs.zalando.com/tech/)'s article images—here consisting of a training set of 40,000 examples and a test set of 5,000 examples. Each example is a 28x28 gray scale image, associated with a label from 10 classes. It shares the same image size and structure of training and testing splits.
 
-
-
-<img src="E:\Code\Jupyter\STAT-535\outputs\data_demo.png" style="zoom:20%" />
+<img src="https://github.com/VitoDH/stat535_project/raw/master/img/data_demo.png" style="zoom:20%" />
 
 <center><B>Fig. 1 </B>First 100 samples of the training set</center>
 
@@ -116,7 +114,7 @@ Recurse for subsets $Q_{left}(\theta^∗)$ and $Q_{right}(\theta^∗)$ until the
 
 #### (1) Model Description
 
-<img src="E:\UW\STAT535\project\network_2.png" style="zoom:90%" />
+<img src="https://github.com/VitoDH/stat535_project/raw/master/img/network_2.png" style="zoom:90%" />
 
 <center><B>Fig. 2 </B>Model Architechture (by TensorSpace)</center>
 
@@ -279,7 +277,7 @@ The range of the hyper parameter is:
 
 For a fixed min samples leaf, we can plot the accuracy vs max depth. Here we set min samples leaf=1.
 
-<img src="E:\Code\Jupyter\STAT-535\outputs\gridsearch_depth.png" style="zoom:40%" />
+<img src="https://github.com/VitoDH/stat535_project/raw/master/img/gridsearch_depth.png" style="zoom:40%" />
 
 <center><B>Fig. 3 </B>GridSearchCV for max depth in Decision Tree</center>
 
@@ -289,7 +287,7 @@ For a fixed min samples leaf, we can plot the accuracy vs max depth. Here we set
 
 For a fixed max depth, we can plot the accuracy vs min sample leaf. Here we set max depth=None, which means that the tree will grow to the maximum depth.
 
-<img src="E:\Code\Jupyter\STAT-535\outputs\gridsearch_leaf.png" style="zoom:40%" />
+<img src="https://github.com/VitoDH/stat535_project/raw/master/img/gridsearch_leaf.png" style="zoom:40%" />
 
 <center><B>Fig. 4 </B>GridSearchCV for min sample leaf in Decision Tree</center>
 
@@ -321,7 +319,7 @@ From part (1), we can select the final model to be a decision tree with $max\_de
 
 After training for $80$ epochs, we can plot the following learning curve including loss and accuracy of training set and validation set.
 
-<img src="E:\Code\Jupyter\STAT-535\outputs\learning_curve.png" style="zoom:60%" />
+<img src="https://github.com/VitoDH/stat535_project/raw/master/img/learning_curve.png" style="zoom:60%" />
 
 <center><B>Fig. 5 </B>Learning Curve</center>
 
