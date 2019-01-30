@@ -39,9 +39,7 @@ Each training and test example is assigned to one of the following labels:
 
 Supposed the data matrix is $X$, we can normalize it to speed up training by dividing by $255$. 
 
-![](http://latex.codecogs.com/gif.latex?\\X_{norm}=\frac{X}{255})
-
-
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;X_{norm}=\frac{X}{255}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
 #### (2) Max Absolute Scale
 
