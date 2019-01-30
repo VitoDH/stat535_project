@@ -37,20 +37,21 @@ Each training and test example is assigned to one of the following labels:
 
 #### (1)  Normalization
 
-Supposed the data matrix is $X$, we can normalize it to speed up training by dividing by $255$. 
+Supposed the data matrix is <img src="https://latex.codecogs.com/svg.latex?\Large&space;X" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />, we can normalize it to speed up training by dividing by 255. 
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;X_{norm}=\frac{X}{255}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
 #### (2) Max Absolute Scale
 
-To scale each feature to the $[-1,1]$ range without breaking the sparsity of the images, we can use max absolute scaling,
-$$
-X_{MAbs}=\frac{X_{norm}}{max(abs(X_{norm}),axis=0)}
-$$
+To scale each feature to the<img src="https://latex.codecogs.com/svg.latex?\Large&space;[-1,1]" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />  range without breaking the sparsity of the images, we can use max absolute scaling,
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;X_{MAbs}=\frac{X_{norm}}{max(abs(X_{norm}),axis=0)}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+
 
 #### (3) PCA
 
-Linear dimensionality reduction using Singular Value Decomposition of the data to project it to a lower dimensional space. Since there are $10$ classes in the dataset, we can first set the decomposition components to be $10$. After careful trial, $10$ tend to be a good choice.
+Linear dimensionality reduction using Singular Value Decomposition of the data to project it to a lower dimensional space. Since there are 10​ classes in the dataset, we can first set the decomposition components to be ​10. After careful trial, 10​ tend to be a good choice.
 
 
 
@@ -58,19 +59,19 @@ Linear dimensionality reduction using Singular Value Decomposition of the data t
 
 #### (1) Reshape 
 
-Since convolution network requires the input to be $3D$ images, we need to reshape the image vector into image matrix with size of $28\times28$ and one channel. Now the range of each component is $[0,255]$ .
+Since convolution network requires the input to be 3D​ images, we need to reshape the image vector into image matrix with size of 28 x 28​ and one channel. Now the range of each component is [0,255]​ .
 
-Dimension of data  before reshape: $(40000,784)$
+Dimension of data  before reshape: (40000,784)​
 
-Dimension of data  after reshape: $(40000,28,28,1)$
+Dimension of data  after reshape: (40000,28,28,1)​
 
 #### (2) Scaling
 
-Using the function "transform.ToTensor" in Gluon, we can again reshape the data for the standard input in the framework and scale the data in the range $[0,1)$ .
+Using the function "transform.ToTensor" in Gluon, we can again reshape the data for the standard input in the framework and scale the data in the range [0,1)​ .
 
-Dimension of data  before scaling: $(40000,28,28,1)$
+Dimension of data  before scaling: (40000,28,28,1)​
 
-Dimension of data  after scaling: $(40000,1,28,28)$
+Dimension of data  after scaling: (40000,1,28,28)​
 
 
 
@@ -78,26 +79,31 @@ Dimension of data  after scaling: $(40000,1,28,28)$
 
 ### a. Decision Tree
 
-#### (1) Model Description$^{[1]}$
+#### (1) Model Description
 
-Given training vectors $x_i \in R^n$  , $i=1,\cdots, N$ and a label $y $  , a decision tree recursively partitions the space such that the samples with the same labels are grouped together.
+Given training vectors <img src="https://latex.codecogs.com/svg.latex?\Large&space;x_i \in R^n" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> , <img src="https://latex.codecogs.com/svg.latex?\Large&space;i=1,\cdots, N" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />  and a label <img src="https://latex.codecogs.com/svg.latex?\Large&space;y" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />, a decision tree recursively partitions the space such that the samples with the same labels are grouped together.
 
-Let the data at node $m$ be represented by $Q$. For each candidate split $\theta=(j,t_m)$   consisting of a feature $j$  and threshold $t_m$ , partition the data into $Q_{left}(\theta)$ and $Q_{right}(\theta)$  subsets
-$$
-\begin{split}
+Let the data at node m be represented by Q​. For each candidate split ​<img src="https://latex.codecogs.com/svg.latex?\Large&space;\theta=(j,t_m)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />  consisting of a feature   and threshold  , partition the data into  and   subsets
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;
 Q_{left}(\theta)&=(x,y)|x_j\leq t_m\\
+" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;
 Q_{right}(\theta)&=Q \backslash Q_{left}(\theta)
-\end{split}
-$$
-The impurity at $m$ is computed using an impurity function $H$  , the choice of which depends on the task being solved (classification or regression)
-$$
-G(Q,\theta)=\frac{n_{left}}{N_m}H(Q_{left}(\theta))+\frac{n_{right}}{N_m}H(Q_{right}(\theta))
-$$
+" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+
+
+The impurity at m​ is computed using an impurity function ​H​  , the choice of which depends on the task being solved (classification or regression)
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;G(Q,\theta)=\frac{n_{left}}{N_m}H(Q_{left}(\theta))+\frac{n_{right}}{N_m}H(Q_{right}(\theta))" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
 Select the parameters that minimises the impurity
-$$
-θ^∗=argmin_θ⁡G(Q,θ)
-$$
-Recurse for subsets $Q_{left}(\theta^∗)$ and $Q_{right}(\theta^∗)$ until the maximum allowable depth is reached, $N_m<min_{samples}$ or $N_m=1$ .
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;\theta^*=argmin_θ⁡G(Q,\theta)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+Recurse for subsets <img src="https://latex.codecogs.com/svg.latex?\Large&space;Q_{left}(\theta^∗)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;Q_{right}(\theta^∗)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> until the maximum allowable depth is reached, <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_m\leq min_{samples}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> or <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_m=1" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> .
 
 
 
