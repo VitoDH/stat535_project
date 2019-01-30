@@ -1,7 +1,3 @@
-<script type="text/javascript" async
-src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js? 
-config=TeX-MML-AM_CHTML"
-</script>
 
 # STAT 535 - Project Report 
 
@@ -42,9 +38,10 @@ Each training and test example is assigned to one of the following labels:
 #### (1)  Normalization
 
 Supposed the data matrix is $X$, we can normalize it to speed up training by dividing by $255$. 
-$$
-X_{norm}=\frac{X}{255}
-$$
+
+![](http://latex.codecogs.com/gif.latex?\\X_{norm}=\frac{X}{255})
+
+
 
 #### (2) Max Absolute Scale
 
