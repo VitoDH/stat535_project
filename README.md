@@ -88,7 +88,7 @@ Dimension of data  after scaling: (40000,1,28,28)​
 
 
 
-### b. LeNet $ ^{[3]}$
+### b. LeNet
 
 #### (1) Model Description
 
@@ -149,11 +149,11 @@ To demonstrate the model, we can again split the data into training set and vali
 
 According to the paper of Glorot & Bengio , we assume that for a specific layer $L$, the number of input  and output units are respectively, $n_{in}$ and $n_{out}$ .  
 
-The requirement for the weight $W^L$in layer $L$ should be:
+The requirement for the weight  layer L should be:
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;Var(W^L)=\frac{2}{n_{L}+n_{L+1}}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
-And the initialization of weights $W^L​$ follow the uniform distribution:
+And the initialization of weights  follow the uniform distribution:
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;W\sim U[-\sqrt{\frac{6}{n_L+n_{L+1}}},\sqrt{\frac{6}{n_L+n_{L+1}}}]" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
