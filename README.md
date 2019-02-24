@@ -79,35 +79,7 @@ Dimension of data  after scaling: (40000,1,28,28)​
 
 ### a. Decision Tree
 
-#### (1) Model Description
-
-Given training vectors <img src="https://latex.codecogs.com/svg.latex?\Large&space;x_i \in R^n" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> , <img src="https://latex.codecogs.com/svg.latex?\Large&space;i=1,\cdots, N" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />  and a label <img src="https://latex.codecogs.com/svg.latex?\Large&space;y" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />, a decision tree recursively partitions the space such that the samples with the same labels are grouped together.
-
-Let the data at node m be represented by Q​. For each candidate split ​<img src="https://latex.codecogs.com/svg.latex?\Large&space;\theta=(j,t_m)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />  consisting of a feature   and threshold  , partition the data into  and   subsets
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;
-Q_{left}(\theta)&=(x,y)|x_j\leq t_m\\
-" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;
-Q_{right}(\theta)&=Q \backslash Q_{left}(\theta)
-" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
-
-
-
-The impurity at m​ is computed using an impurity function ​H​  , the choice of which depends on the task being solved (classification or regression)
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;G(Q,\theta)=\frac{n_{left}}{N_m}H(Q_{left}(\theta))+\frac{n_{right}}{N_m}H(Q_{right}(\theta))" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
-
-Select the parameters that minimises the impurity
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;\theta^*=argmin_θ⁡G(Q,\theta)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
-
-Recurse for subsets <img src="https://latex.codecogs.com/svg.latex?\Large&space;Q_{left}(\theta^∗)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> and <img src="https://latex.codecogs.com/svg.latex?\Large&space;Q_{right}(\theta^∗)" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> until the maximum allowable depth is reached, <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_m\leq min_{samples}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> or <img src="https://latex.codecogs.com/svg.latex?\Large&space;N_m=1" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" /> .
-
-
-
-#### (2) Parametrization
+#### Parametrization
 
 |    Parameters    |                       Description                       | Value  |
 | :--------------: | :-----------------------------------------------------: | :----: |
@@ -148,68 +120,6 @@ The model is constructed as follows:
 
 
 
-## Basic Training Algorithms
-
-### a. Decision Tree
-
-Definition of **Gini**:
-$$
-Gini(X)=\sum_kp_k(1-p_k)=1-\sum_kp_k^2
-$$
-Suppose there are $K$ classes in training set $D$, $C_k$ denotes the sample set containing the class $k$. 
-
-The **Gini** of a dataset is:
-$$
-Gini(D)=\sum_k\frac{|C_k|}{|D|}(1-\frac{|C_k}{|D|})
-$$
-
-####  Training Algorithm: CART $ ^{[2]} $
-
-* Input: Training set     $ D={(x_1,y_1),\cdots,(x_N,y_N)} $
-
-  (i) Split the dataset based on the feature $A$, calculate the **Gini** when $A=a$
-$$
-Gini(D,A)=\frac{|D_1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D_2)
-$$
-  (ii) Pick the feature $A^*$and its corresponding value $a^*$ that minimize the $Gini$ to split the dataset into $D_1$ and $D_2$
-
-  (iii) Loop (i)~(ii) until the stopping condition is satisfied
-
-* Output: Classfication tree $T$
-
-
-
-### b. LeNet
-
-#### Training Algorithm: Adam
-
-Adaptive Moment Estimation is a method that computes adaptive learning rates for each parameter. 
-
-Initialize  the following parameter
-
- $ V_{dw } =0 , V_{d b}=0 , S_{dw}=0, S_{db}=0 $
-
-On iteration $t$ :
-
-  (i) Compute the gradients $dw$ and $db$ using the mini-batch gradient descent
-
-  (ii) $V_{dw}=\beta_1v_{dw}+(1-\beta_1)dw$ , $V_{db}=\beta_1v_{db}+(1-\beta_1)db$
-
-​       $S_{dw}=\beta_1S_{dw}+(1-\beta_1)(dw)^2$,   $ S_{db}=\beta_2S_{db}+(1-\beta_2)(db)^2 $
-
-​       $V_{dw}^{corrected}=\frac{V_{dw}}{1-\beta_1^t}$, $V_{db}^{corrected}=\frac{V_{db}}{1-\beta_1^t} $
-
-​       $S_{dw}^{corrected}=\frac{S_{dw}}{1-\beta_2^t}$, $S_{db}^{corrected}=\frac{S_{db}}{1-\beta_2^t} $
-
-  (iii) Update the weights by
-$$
-\begin{split}
-w:=w-\alpha\frac{V_{dw}^{corrected}}{\sqrt{S_{dw}^{corrected}+\epsilon}}\\
-b:=b-\alpha\frac{V_{db}^{corrected}}{\sqrt{S_{db}^{corrected}+\epsilon}}\\
-\end{split}
-$$
-where $\epsilon$ is a small number.
-
 
 
 ## Training Strategy
@@ -240,13 +150,12 @@ To demonstrate the model, we can again split the data into training set and vali
 According to the paper of Glorot & Bengio , we assume that for a specific layer $L$, the number of input  and output units are respectively, $n_{in}$ and $n_{out}$ .  
 
 The requirement for the weight $W^L$in layer $L$ should be:
-$$
-Var(W^L)=\frac{2}{n_{L}+n_{L+1}}
-$$
-And the initialization of weights $W^L$ follow the uniform distribution:
-$$
-W\sim U[-\sqrt{\frac{6}{n_L+n_{L+1}}},\sqrt{\frac{6}{n_L+n_{L+1}}}]
-$$
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;Var(W^L)=\frac{2}{n_{L}+n_{L+1}}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
+
+And the initialization of weights $W^L​$ follow the uniform distribution:
+
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;W\sim U[-\sqrt{\frac{6}{n_L+n_{L+1}}},\sqrt{\frac{6}{n_L+n_{L+1}}}]" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" />
 
 #### (2)  Dataset Splitting
 
@@ -276,8 +185,8 @@ Setting the training epochs to be $80$, we record the training loss, validation 
 
 The range of the hyper parameter is:
 
-* max_depth: $10,20,30,40,50,60,70,80,90,100$
-* min_samples_leaf: $1,2,3,4,5$
+* max_depth: 10,20,30,40,50,60,70,80,90,100​
+* min_samples_leaf: 1,2,3,4,5​
 
 
 
@@ -287,7 +196,7 @@ For a fixed min samples leaf, we can plot the accuracy vs max depth. Here we set
 
 <center><B>Fig. 3 </B>GridSearchCV for max depth in Decision Tree</center>
 
-* The accuracy of training set and validation set both goes up as maximum depth increases and become stable after $max\_depth=40$ .
+* The accuracy of training set and validation set both goes up as maximum depth increases and become stable after max\_depth=40​ .
 
 
 
@@ -301,15 +210,15 @@ For a fixed max depth, we can plot the accuracy vs min sample leaf. Here we set 
 
 
 
-From the two graphs above , we can conclude that the accuracy of validation(test) set is maximized when $max\_depth=40$ and $min\_samples\_leaf=1$. 
+From the two graphs above , we can conclude that the accuracy of validation(test) set is maximized when **max\_depth=40** and **min\_samples\_leaf=1​**. 
 
-Actually, considering the combination of two parameters at the same time, we can still have the same conclusion that the best accuracy is $0.84$. 
+Actually, considering the combination of two parameters at the same time, we can still have the same conclusion that the best accuracy is **0.84**​. 
 
 
 
 #### (2) Training and validation demo
 
-From part (1), we can select the final model to be a decision tree with $max\_depth=40$ and $min\_samples\_leaf=1$ . Splitting the raw dataset into training set and validation set, we can fit the model again and obtain the following results.
+From part (1), we can select the final model to be a decision tree with **max\_depth=40**​ and **min\_samples\_leaf=1**​ . Splitting the raw dataset into training set and validation set, we can fit the model again and obtain the following results.
 
 
 
